@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Time in Words</title>
+		<link rel="styleheet" href="/css/styles.css"/>
+	</head>
+	<body>
+	<div align="center">
+			<h3>Resultado the Time in Words</h3>
+			<p th:if="${param.error}" th:text="${errorMsg}" class="error">
+			<form th:action="@{/app/Resultados}" th:object="${palabra}" method="get">
+				<fieldset>
+					<label th:text="${palabras}"></label>
+				</fieldset>
+			</form>
+			
+		</div>
+		<div align="center">
+			<h3>Agregar una Hora a BD y mostrar resultado</h3>
+			<p th:if="${param.error}" th:text="${errorMsg}" class="error">
+			<form th:action="@{/app/Resultados}" th:object="${tiempo}" method="post">
+				<fieldset>
+					<label class="etiqueta">Hora: </label> 
+					<input type="text" name="hor" th:field="*{hora}" required
+						pattern="[1-9]{1}|[0-1]{2}" title="Solo numeros del 1 al 11"/>
+					<br /><br />
+					<label class="etiqueta">Minutos: </label>
+					<input type="text" name="min" th:field="*{minutos}" required
+						pattern="[0-5]*[0-9]" title="Solo numeros del 0 al 59"/>
+					<br/><br/>
+					<input type="submit" value="Guardar"/>
+				</fieldset>
+			</form>
+			
+		</div>
+	</body>
+</html>
